@@ -4,6 +4,7 @@ import NavbarCommon from "./components/Navbar";
 
 const QuestionOnePage = lazy(() => import("./pages/QuestionOnePage"));
 const QuestionTwoPage = lazy(() => import("./pages/QuestionTwoPage"));
+const QuestionThreePage = lazy(() => import("./pages/QuestionThreePage"));
 
 export default function AppRouter() {
   return (
@@ -13,6 +14,7 @@ export default function AppRouter() {
         <Routes>
           <Route path="/" element={<QuestionOnePage />} />
           <Route path="/two" element={<QuestionTwoPage />} />
+          <Route path="/three" element={<QuestionThreePage />} />
         </Routes>
       </Router>
     </>

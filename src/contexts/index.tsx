@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useMemo, useState } from "react";
 import SwalCommon from "../common/SwalCommon";
-import testServices from "../services/TestServices";
+import { testServices } from "../services/TestServices";
 
 interface AppContextProps {
   inputOneValue: number | string;
@@ -9,6 +9,9 @@ interface AppContextProps {
   inputTwoValue: number | string;
   setInputTwoValue: (inputTwoValue: number | string) => void;
   handleClickTwo: () => void;
+  inputThreeValue: number | string;
+  setInputThreeValue: (inputThreeValue: number | string) => void;
+  handleClickThree: () => void;
 }
 
 export const AppContext = createContext<AppContextProps>({
@@ -18,6 +21,9 @@ export const AppContext = createContext<AppContextProps>({
   inputTwoValue: "",
   setInputTwoValue: () => {},
   handleClickTwo: () => {},
+  inputThreeValue: "",
+  setInputThreeValue: () => {},
+  handleClickThree: () => {},
 });
 
 interface ChildrenProps {
@@ -27,6 +33,7 @@ interface ChildrenProps {
 export function AppContextProvider({ children }: ChildrenProps) {
   const [inputOneValue, setInputOneValue] = useState<number | string>(0);
   const [inputTwoValue, setInputTwoValue] = useState<number | string>("");
+  const [inputThreeValue, setInputThreeValue] = useState<number | string>("");
 
   const handleClick = () => {
     const digisibleValue = testServices.isDigisible(inputOneValue);
@@ -46,6 +53,15 @@ export function AppContextProvider({ children }: ChildrenProps) {
     });
   };
 
+  const handleClickThree = () => {
+    const clockAngleValue = testServices.clockAngle(inputThreeValue);
+
+    SwalCommon({
+      icon: "success",
+      value: clockAngleValue.toString(),
+    });
+  };
+
   const values = useMemo(
     () => ({
       inputOneValue,
@@ -54,6 +70,9 @@ export function AppContextProvider({ children }: ChildrenProps) {
       inputTwoValue,
       setInputTwoValue,
       handleClickTwo,
+      inputThreeValue,
+      setInputThreeValue,
+      handleClickThree,
     }),
     [
       inputOneValue,
@@ -62,6 +81,9 @@ export function AppContextProvider({ children }: ChildrenProps) {
       inputTwoValue,
       setInputTwoValue,
       handleClickTwo,
+      inputThreeValue,
+      setInputThreeValue,
+      handleClickThree,
     ]
   );
 

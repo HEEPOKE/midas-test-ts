@@ -58,9 +58,17 @@ const getHandScore = (value: any): number => {
   return score;
 };
 
-const testServices = {
-  isDigisible,
-  getHandScore,
+const clockAngle = (value: any): number => {
+  const [hours, minutes] = value.split(":").map(Number);
+  const hourAngle = (hours % 12) * 30 + minutes / 2;
+  const minuteAngle = minutes * 6;
+  let angleDiff = Math.abs(hourAngle - minuteAngle);
+  angleDiff = Math.min(angleDiff, 360 - angleDiff);
+  return Math.round(angleDiff);
 };
 
-export default testServices;
+export const testServices = {
+  isDigisible,
+  getHandScore,
+  clockAngle,
+};
