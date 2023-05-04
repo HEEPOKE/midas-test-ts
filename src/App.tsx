@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import { lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavbarCommon from "./components/Navbar";
 
